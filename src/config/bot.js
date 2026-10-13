@@ -328,7 +328,18 @@ export const botConfig = {
       enabled: process.env.NODE_ENV === 'development',
       command: '!testwelcome', // Exact text, independent of PREFIX.
       exactMatch: true,
+      // Put ONLY your Discord user ID in OWNER_IDS for access only by you.
+      // The handler must check isBotOwner(author.id) BEFORE rendering/fetching
+      // preview members; canManageBot is too broad because it includes head staff.
       ownerOnly: true,
+      allowAdminOrModeratorBypass: false,
+      delivery: 'dm-to-command-owner',
+      publicAcknowledgement: false,
+      allowPublicFallback: false,
+      onDeliveryFailure: 'log-error-without-posting-preview',
+      labelPreviews: true,
+      // The typed !testwelcome command is still visible in its server channel.
+      // Only the preview banners are delivered privately. Never post them there.
       previewNumbers: [1, 2],
       secondMember: 'another-non-bot-or-tester',
       useRealAvatarAndUsername: true,
